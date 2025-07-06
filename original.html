@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreadCraft - Elegant Embroidery Designs</title>
+    <link rel="apple-touch-icon" href="images/icons/Logo.png">
+<link rel="icon" href="images/icons/Logo.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #406135 0%, #406035 100%);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #febc7e;
+            text-decoration: none;
+            z-index: 1001;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            color: #d4af37;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-bar {
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 2px solid #d4af37;
+            border-radius: 25px;
+            background: white;
+            width: 250px;
+            font-size: 0.9rem;
+        }
+
+        .search-bar::placeholder {
+            color: #999;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #d4af37;
+        }
+
+        .language-dropdown {
+            position: relative;
+        }
+
+        .language-btn {
+            padding: 0.5rem 1rem;
+            background: #d4af37;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 120px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            z-index: 1;
+            right: 0;
+            top: 100%;
+            margin-top: 5px;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            border-radius: 5px;
+        }
+
+        .dropdown-content a:hover {
+            background: #f1f1f1;
+        }
+
+        .language-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffbf91;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff8400;
+        }
+
+        .tagline {
+            text-align: center;
+            margin-top: 0.5rem;
+            color: #8b4513;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #8b4513;
+            z-index: 1001;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 140px;
+        }
+
+        /* Carousel Section */
+        .carousel-section {
+            padding: 3rem 0;
+            background-image: url('images/designs/carosuel-background.png');
+            background-size: cover;          /* Make image fully cover the section */
+    background-repeat: no-repeat;    /* Prevent tiling */
+    background-position: center;     /* Center the image */
+    background-attachment: fixed;    /* Optional: image stays fixed on scroll */
+        }
+
+        .carousel-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            height: 400px; /* Increased height */
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        /* Slide 1 - Finishing Design */
+        .carousel-slide:nth-child(1) {
+            background-image: url('https://example.com/embroidery-bg1.jpg');
+            background-color: #d4af37; /* Fallback */
+        }
+
+        /* Slide 2 - Customized Design */
+        .carousel-slide:nth-child(2) {
+            background-image: url('https://example.com/embroidery-bg2.jpg');
+            background-color: #b8860b; /* Fallback */
+        }
+
+        /* Slide 3 - Unique Threadwork */
+        .carousel-slide:nth-child(3) {
+            background-image: url('https://example.com/embroidery-bg3.jpg');
+            background-color: #8b4513; /* Fallback */
+        }
+
+        /* Slide 4 - Color Combination */
+        .carousel-slide:nth-child(4) {
+            background-image: url('https://example.com/embroidery-bg4.jpg');
+            background-color: #b8b510	; /* Fallback */
+        }
+
+        .slide-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+            color: white;
+        }
+
+        .slide-image {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-image img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+        }
+
+        .slide-text {
+            flex: 1;
+            padding: 2rem;
+            text-align: left;
+        }
+
+        .slide-text h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .slide-text p {
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            max-width: 80%;
+            line-height: 1.6;
+        }
+
+        /* Shape Decorations */
+        .shape-decoration {
+            position: absolute;
+            opacity: 0.2;
+            z-index: 1;
+        }
+@keyframes floatUpDown {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-1cm);
+    }
+}
+
+.circle-pattern,
+.circle-pattern1,
+.circle-pattern-sm,
+.honeycomb-pattern,
+.honeycomb-pattern1,
+.honeycomb-pattern-sm {
+    position: absolute;
+    animation: floatUpDown 3s ease-in-out infinite;
+}
+
+/* Existing styles */
+.circle-pattern {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: white;
+    top: 20px;
+    right: 50px;
+}
+
+.circle-pattern1 {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: white;
+    bottom: 20px;
+    left: 37%;
+}
+.circle-pattern-sm {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: white;
+    bottom: 20px;
+    left: 37%;
+}
+.honeycomb-pattern {
+    width: 100px;
+    height: 100px;
+    background: white;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    bottom: 30px;
+    left: 37%;
+}
+
+.honeycomb-pattern1 {
+    width: 100px;
+    height: 100px;
+    background: white;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    top: 30px;
+    right: 80px;
+}
+.honeycomb-pattern-sm {
+    width: 25px;
+    height: 25px;
+    background: white;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    top: 30px;
+    right: 80px;
+}
+
+
+        /* Our Designs Section */
+        .designs-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #faf8f3 0%, #f0ebe3 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #8b4513;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #d4af37, #8b4513);
+            border-radius: 2px;
+        }
+
+        .designs-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .design-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .design-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .design-image {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .design-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure image fits perfectly */
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+
+        .design-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .design-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        105deg,
+        transparent,
+        rgba(255, 255, 255, 0.2) 20%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(3, 3, 3, 0.112) 80%,
+        transparent
+    );
+    animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+}
+
+        .design-info {
+            padding: 1.5rem;
+        }
+
+        .design-id {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #8b4513;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .design-buttons {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .btn-call {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #1da851);
+            color: white;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        /* see more */
+        .design-card.hidden {
+    display: none;
+}
+
+.see-more-container {
+    display: flex;              /* Enables flexbox */
+    flex-direction: column;     /* Stack items vertically */
+    justify-content: center;    /* Center vertically (optional) */
+    align-items: center;        /* Center horizontally */
+    text-align: center;
+    margin: 20px 0;
+}
+
+
+.btn-see-more {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-see-more:hover {
+    background-color: #45a049;
+}
+
+        /* About Us Section */
+        .about-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8f6f0 0%, #e8ddd4 100%);
+            position: relative;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: #8b4513;
+            margin-bottom: 2rem;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .highlight-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .highlight-item i {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-item h3 {
+            color: #8b4513;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 100%);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #d4af37;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: #d4af37;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: #d4af37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.1);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            margin-top: 2rem;
+            color: #999;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-center, .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 0;
+            }
+
+            .nav-center.active, .nav-links.active {
+                display: flex;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+
+            .nav-container {
+                flex-direction: row-reverse;
+                padding-right: 20%;
+                align-items: center;gap: 1rem;
+            }
+
+            .main-content {
+                margin-top: 180px;
+            }
+
+
+            .slide-content h2 {
+                font-size: 2rem;
+            }
+
+            .slide-content p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .designs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .design-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            /* carosoul */
+            .carousel-wrapper {
+                height: 500px; /* Taller for mobile */
+            }
+            
+            .slide-content {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .slide-image {
+                flex: none;
+                height: 40%;
+            }
+            
+            .slide-text {
+                flex: none;
+                height: 60%;
+                padding: 1rem;
+                text-align: center;
+            }
+            
+            .slide-text h2 {
+                font-size: 2rem;
+            }
+            
+            .slide-text p {
+                max-width: 100%;
+                font-size: 1.1rem;
+            }
+            
+            .shape-decoration {
+                display: none; /* Hide shapes on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" >
+                <img src="images/icons/Logo.png" alt="Logo" style="width: 50px; height: auto; border: 2px solid #000000; border-radius: 50%; ">
+                ThreadCraft
+            </a>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <div class="nav-center" id="nav-center">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-bar" placeholder="Search by Design ID...">
+                </div>
+                
+                <div class="language-dropdown">
+                    <button class="language-btn">
+                        <i class="fas fa-globe"></i> English <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">English</a>
+                        <a href="#">Tamil</a>
+                        <a href="#">Malayalam</a>
+                        <a href="#">Kannada</a>
+                        <a href="#">Hindi</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-links" id="nav-links">
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Carousel Section -->
+        <section class="carousel-section">
+        <div class="carousel-container">
+            <div class="carousel-wrapper">
+                <!-- Slide 1 - Finishing Design -->
+                <div class="carousel-slide active">
+                    <div class="slide-content">
+                        <div class="slide-image">
+                            <img src="images/designs/carosuel1.png" alt="Finishing Design">
+                        </div>
+                        <div class="slide-text">
+                            <h2>Finishing Design</h2>
+                            <p>Perfecting every detail with precision and artistry</p>
+                        </div>
+                    </div>
+                    <div class="shape-decoration circle-pattern"></div>
+                    <div class="shape-decoration circle-pattern1"></div>
+                    <div class="shape-decoration circle-pattern-sm"></div>
+                </div>
+                
+                <!-- Slide 2 - Customized Design -->
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <div class="slide-image">
+                            <img src="images/designs/carosuel2.png" alt="Customized Design">
+                        </div>
+                        <div class="slide-text">
+                            <h2>Customized Design</h2>
+                            <p>Tailored creations that reflect your unique vision</p>
+                        </div>
+                    </div>
+                    <div class="shape-decoration honeycomb-pattern"></div>
+                    <div class="shape-decoration honeycomb-pattern1"></div>
+                    <div class="shape-decoration honeycomb-pattern-sm"></div>
+                </div>
+                
+                <!-- Slide 3 - Unique Threadwork -->
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <div class="slide-image">
+                            <img src="images/designs/carosuel3.png" alt="Unique Threadwork">
+                        </div>
+                        <div class="slide-text">
+                            <h2>Unique Threadwork</h2>
+                            <p>Masterful techniques passed down through generations</p>
+                        </div>
+                    </div>
+                    <div class="shape-decoration circle-pattern"></div>
+                    <div class="shape-decoration circle-pattern1"></div>
+                    <div class="shape-decoration circle-pattern-sm"></div>
+                </div>
+                
+                <!-- Slide 4 - Color Combination -->
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <div class="slide-image">
+                            <img src="images/designs/carosuel4.png" alt="Color Combination">
+                        </div>
+                        <div class="slide-text">
+                            <h2>Color Combination Expertise</h2>
+                            <p>Harmonious palettes that bring designs to life</p>
+                        </div>
+                    </div>
+                    <div class="shape-decoration honeycomb-pattern"></div>
+                    <div class="shape-decoration honeycomb-pattern1"></div>
+                    <div class="shape-decoration honeycomb-pattern-sm"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <!-- Our Designs Section -->
+        <section class="designs-section">
+            <h2 class="section-title">Our Designs</h2>
+            <div class="designs-grid">
+                <div class="design-card" data-design-id="EMB-001">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-1.jpg', 'EMB-001')">
+                        <img src="images/designs/EMB-1.jpg" alt="Design EMB-001">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-001</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-001" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-001')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="design-card" data-design-id="EMB-002">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-2.jpg', 'EMB-002')">
+                        <img src="images/designs/EMB-2.jpg" alt="Design EMB-002">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-002</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-002" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-002')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="design-card" data-design-id="EMB-003">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-3.jpg', 'EMB-003')">
+                        <img src="images/designs/EMB-3.jpg" alt="Design EMB-003">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-003</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-003" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-003')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="design-card" data-design-id="EMB-004">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-4.jpg', 'EMB-004')">
+                        <img src="images/designs/EMB-4.jpg" alt="Design EMB-004">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-004</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-004" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-004')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="design-card" data-design-id="EMB-006">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-6.jpg', 'EMB-006')">
+                        <img src="images/designs/EMB-6.jpg" alt="Design EMB-006">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-006</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-006" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-006')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="design-card" data-design-id="EMB-010">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-10.jpg', 'EMB-010')">
+                        <img src="images/designs/EMB-10.jpg" alt="Design EMB-010">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-010</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-010" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-010')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                  <div class="design-card" data-design-id="EMB-013">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-13.jpg', 'EMB-013')">
+                        <img src="images/designs/EMB-13.jpg" alt="Design EMB-013">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-013</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-013" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-013')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="design-card" data-design-id="EMB-014">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-14.jpg', 'EMB-014')">
+                        <img src="images/designs/EMB-14.jpg" alt="Design EMB-014">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-014</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-014" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-014')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="design-card" data-design-id="EMB-015">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-15.jpg', 'EMB-015')">
+                        <img src="images/designs/EMB-15.png" alt="Design EMB-015">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-015</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-015" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-015')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="design-card hidden" data-design-id="EMB-017">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-17.jpg', 'EMB-017')">
+                        <img src="images/designs/EMB-17.jpg" alt="Design EMB-017">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-017</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-017" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-017')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+<div class="design-card hidden" data-design-id="EMB-018">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-18.jpg', 'EMB-018')">
+                        <img src="images/designs/EMB-18.jpg" alt="Design EMB-018">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-018</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-018" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-018')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+<div class="design-card hidden" data-design-id="EMB-019">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-19.jpg', 'EMB-019')">
+                        <img src="images/designs/EMB-19.jpg" alt="Design EMB-019">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-019</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-019" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-019')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+<div class="design-card hidden" data-design-id="EMB-020">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-20.jpg', 'EMB-020')">
+                        <img src="images/designs/EMB-20.jpg" alt="Design EMB-020">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-020</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-020" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-020')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+<div class="design-card hidden" data-design-id="EMB-021">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-21.jpg', 'EMB-021')">
+                        <img src="images/designs/EMB-21.jpg" alt="Design EMB-021">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-021</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-021" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-021')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+<div class="design-card hidden" data-design-id="EMB-023">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-23.jpg', 'EMB-023')">
+                        <img src="images/designs/EMB-23.jpg" alt="Design EMB-023">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-023</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-023" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-023')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+<div class="design-card hidden" data-design-id="EMB-024">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-24.jpg', 'EMB-024')">
+                        <img src="images/designs/EMB-24.jpg" alt="Design EMB-024">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-024</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-024" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-024')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+<div class="design-card hidden" data-design-id="EMB-026">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-26.jpg', 'EMB-026')">
+                        <img src="images/designs/EMB-26.jpg" alt="Design EMB-026">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-026</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-026" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-026')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+<div class="design-card hidden" data-design-id="EMB-027">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-27.jpg', 'EMB-027')">
+                        <img src="images/designs/EMB-27.jpg" alt="Design EMB-027">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-027</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-027" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-027')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+<div class="design-card hidden" data-design-id="EMB-028">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-28.jpg', 'EMB-028')">
+                        <img src="images/designs/EMB-28.jpg" alt="Design EMB-028">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-028</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-028" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-028')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+<div class="design-card hidden" data-design-id="EMB-030">
+                    <div class="design-image" onclick="openModal('images/designs/EMB-30.jpg', 'EMB-030')">
+                        <img src="images/designs/EMB-30.jpg" alt="Design EMB-030">
+                    </div>
+                    <div class="design-info">
+                        <div class="design-id">EMB-030</div>
+                        <div class="design-buttons">
+                            <a href="tel:+91 8870552074" class="btn btn-call">
+                                <i class="fas fa-phone"></i> call
+                            </a>
+                            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-030" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                            <button class="btn btn-save" onclick="saveDesign('EMB-030')" disabled>
+                                <i class="fas fa-bookmark"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="design-card hidden" data-design-id="EMB-031">
+    <div class="design-image" onclick="openModal('images/designs/EMB-31.jpg', 'EMB-031')">
+        <img src="images/designs/EMB-31.jpg" alt="Design EMB-031">
+    </div>
+    <div class="design-info">
+        <div class="design-id">EMB-031</div>
+        <div class="design-buttons">
+            <a href="tel:+91 8870552074" class="btn btn-call">
+                <i class="fas fa-phone"></i> call
+            </a>
+            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-031" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="btn btn-save" onclick="saveDesign('EMB-031')" disabled>
+                <i class="fas fa-bookmark"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="design-card hidden" data-design-id="EMB-032">
+    <div class="design-image" onclick="openModal('images/designs/EMB-32.jpg', 'EMB-032')">
+        <img src="images/designs/EMB-32.jpg" alt="Design EMB-032">
+    </div>
+    <div class="design-info">
+        <div class="design-id">EMB-032</div>
+        <div class="design-buttons">
+            <a href="tel:+91 8870552074" class="btn btn-call">
+                <i class="fas fa-phone"></i> call
+            </a>
+            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-032" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="btn btn-save" onclick="saveDesign('EMB-032')" disabled>
+                <i class="fas fa-bookmark"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div class="design-card hidden" data-design-id="EMB-034">
+    <div class="design-image" onclick="openModal('images/designs/EMB-34.jpg', 'EMB-034')">
+        <img src="images/designs/EMB-34.jpg" alt="Design EMB-034">
+    </div>
+    <div class="design-info">
+        <div class="design-id">EMB-034</div>
+        <div class="design-buttons">
+            <a href="tel:+91 8870552074" class="btn btn-call">
+                <i class="fas fa-phone"></i> call
+            </a>
+            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-034" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="btn btn-save" onclick="saveDesign('EMB-034')" disabled>
+                <i class="fas fa-bookmark"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="design-card hidden" data-design-id="EMB-035">
+    <div class="design-image" onclick="openModal('images/designs/EMB-35.jpg', 'EMB-035')">
+        <img src="images/designs/EMB-35.jpg" alt="Design EMB-035">
+    </div>
+    <div class="design-info">
+        <div class="design-id">EMB-035</div>
+        <div class="design-buttons">
+            <a href="tel:+91 8870552074" class="btn btn-call">
+                <i class="fas fa-phone"></i> call
+            </a>
+            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-035" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="btn btn-save" onclick="saveDesign('EMB-035')" disabled>
+                <i class="fas fa-bookmark"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="design-card hidden" data-design-id="EMB-036">
+    <div class="design-image" onclick="openModal('images/designs/EMB-36.jpg', 'EMB-036')">
+        <img src="images/designs/EMB-36.jpg" alt="Design EMB-036">
+    </div>
+    <div class="design-info">
+        <div class="design-id">EMB-036</div>
+        <div class="design-buttons">
+            <a href="tel:+91 8870552074" class="btn btn-call">
+                <i class="fas fa-phone"></i> call
+            </a>
+            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-036" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="btn btn-save" onclick="saveDesign('EMB-036')" disabled>
+                <i class="fas fa-bookmark"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="design-card hidden" data-design-id="EMB-037">
+    <div class="design-image" onclick="openModal('images/designs/EMB-37.jpg', 'EMB-037')">
+        <img src="images/designs/EMB-37.jpg" alt="Design EMB-037">
+    </div>
+    <div class="design-info">
+        <div class="design-id">EMB-037</div>
+        <div class="design-buttons">
+            <a href="tel:+91 8870552074" class="btn btn-call">
+                <i class="fas fa-phone"></i> call
+            </a>
+            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-037" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="btn btn-save" onclick="saveDesign('EMB-037')" disabled>
+                <i class="fas fa-bookmark"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="design-card hidden" data-design-id="EMB-038">
+    <div class="design-image" onclick="openModal('images/designs/EMB-38.jpg', 'EMB-038')">
+        <img src="images/designs/EMB-38.jpg" alt="Design EMB-038">
+    </div>
+    <div class="design-info">
+        <div class="design-id">EMB-038</div>
+        <div class="design-buttons">
+            <a href="tel:+91 8870552074" class="btn btn-call">
+                <i class="fas fa-phone"></i> call
+            </a>
+            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-038" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="btn btn-save" onclick="saveDesign('EMB-038')" disabled>
+                <i class="fas fa-bookmark"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="design-card hidden" data-design-id="EMB-039">
+    <div class="design-image" onclick="openModal('images/designs/EMB-39.jpg', 'EMB-039')">
+        <img src="images/designs/EMB-39.jpg" alt="Design EMB-039">
+    </div>
+    <div class="design-info">
+        <div class="design-id">EMB-039</div>
+        <div class="design-buttons">
+            <a href="tel:+91 8870552074" class="btn btn-call">
+                <i class="fas fa-phone"></i> call
+            </a>
+            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-039" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="btn btn-save" onclick="saveDesign('EMB-039')" disabled>
+                <i class="fas fa-bookmark"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="design-card hidden" data-design-id="EMB-040">
+    <div class="design-image" onclick="openModal('images/designs/EMB-40.jpg', 'EMB-040')">
+        <img src="images/designs/EMB-40.jpg" alt="Design EMB-040">
+    </div>
+    <div class="design-info">
+        <div class="design-id">EMB-040</div>
+        <div class="design-buttons">
+            <a href="tel:+91 8870552074" class="btn btn-call">
+                <i class="fas fa-phone"></i> call
+            </a>
+            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-040" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="btn btn-save" onclick="saveDesign('EMB-040')" disabled>
+                <i class="fas fa-bookmark"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="design-card hidden" data-design-id="EMB-041">
+    <div class="design-image" onclick="openModal('images/designs/EMB-41.jpg', 'EMB-041')">
+        <img src="images/designs/EMB-41.jpg" alt="Design EMB-041">
+    </div>
+    <div class="design-info">
+        <div class="design-id">EMB-041</div>
+        <div class="design-buttons">
+            <a href="tel:+91 8870552074" class="btn btn-call">
+                <i class="fas fa-phone"></i> call
+            </a>
+            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-041" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="btn btn-save" onclick="saveDesign('EMB-041')" disabled>
+                <i class="fas fa-bookmark"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="design-card hidden" data-design-id="EMB-042">
+    <div class="design-image" onclick="openModal('images/designs/EMB-42.jpg', 'EMB-042')">
+        <img src="images/designs/EMB-42.jpg" alt="Design EMB-042">
+    </div>
+    <div class="design-info">
+        <div class="design-id">EMB-042</div>
+        <div class="design-buttons">
+            <a href="tel:+91 8870552074" class="btn btn-call">
+                <i class="fas fa-phone"></i> call
+            </a>
+            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-042" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="btn btn-save" onclick="saveDesign('EMB-042')" disabled>
+                <i class="fas fa-bookmark"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="design-card hidden" data-design-id="EMB-044">
+    <div class="design-image" onclick="openModal('images/designs/EMB-44.jpg', 'EMB-044')">
+        <img src="images/designs/EMB-44.jpg" alt="Design EMB-044">
+    </div>
+    <div class="design-info">
+        <div class="design-id">EMB-044</div>
+        <div class="design-buttons">
+            <a href="tel:+91 8870552074" class="btn btn-call">
+                <i class="fas fa-phone"></i> call
+            </a>
+            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-044" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="btn btn-save" onclick="saveDesign('EMB-044')" disabled>
+                <i class="fas fa-bookmark"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="design-card hidden" data-design-id="EMB-048">
+    <div class="design-image" onclick="openModal('images/designs/EMB-48.jpg', 'EMB-048')">
+        <img src="images/designs/EMB-48.jpg" alt="Design EMB-044">
+    </div>
+    <div class="design-info">
+        <div class="design-id">EMB-048</div>
+        <div class="design-buttons">
+            <a href="tel:+91 8870552074" class="btn btn-call">
+                <i class="fas fa-phone"></i> call
+            </a>
+            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-048" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="btn btn-save" onclick="saveDesign('EMB-048')" disabled>
+                <i class="fas fa-bookmark"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
+<div class="design-card hidden" data-design-id="EMB-049">
+    <div class="design-image" onclick="openModal('images/designs/EMB-49.jpg', 'EMB-049')">
+        <img src="images/designs/EMB-44.jpg" alt="Design EMB-049">
+    </div>
+    <div class="design-info">
+        <div class="design-id">EMB-049</div>
+        <div class="design-buttons">
+            <a href="tel:+91 8870552074" class="btn btn-call">
+                <i class="fas fa-phone"></i> call
+            </a>
+            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-049" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="btn btn-save" onclick="saveDesign('EMB-049')" disabled>
+                <i class="fas fa-bookmark"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
+<div class="design-card hidden " data-design-id="EMB-050">
+    <div class="design-image" onclick="openModal('images/designs/EMB-50.jpg', 'EMB-050')">
+        <img src="images/designs/EMB-50.jpg" alt="Design EMB-050">
+    </div>
+    <div class="design-info">
+        <div class="design-id">EMB-050</div>
+        <div class="design-buttons">
+            <a href="tel:+91 8870552074" class="btn btn-call">
+                <i class="fas fa-phone"></i> call
+            </a>
+            <a href="https://wa.me/+918870552074?text=I'm interested in design EMB-050" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="btn btn-save" onclick="saveDesign('EMB-050')" disabled>
+                <i class="fas fa-bookmark"></i> Save
+            </button>
+        </div>
+    </div>
+</div>
+            </div>
+            
+<div class="see-more-container">
+    <button class="btn btn-see-more" onclick="toggleMoreDesigns()">See More</button>
+</div>
+        </section>
+
+        <!-- About Us Section -->
+        <section class="about-section" id="about">
+            <div class="about-content">
+                <h2>About Us</h2>
+                <p>
+                    Welcome to ThreadCraft, where tradition meets innovation in the world of embroidery. With over two decades of experience, we specialize in creating exquisite handcrafted designs that tell stories through thread and needle.
+                </p>
+                <p>
+                    Our skilled artisans combine time-honored techniques with contemporary aesthetics, ensuring each piece is not just beautiful, but also meaningful. From traditional motifs to modern interpretations, we bring your vision to life with unmatched precision and care.
+                </p>
+                <p>
+                    Every stitch is a testament to our commitment to quality, creativity, and customer satisfaction. We believe that embroidery is more than decoration—it's an art form that connects us to our heritage while embracing the future.
+                </p>
+                
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <h3>Handcrafted Quality</h3>
+                        <p>Each design is meticulously crafted by skilled artisans</p>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-clock"></i>
+                        <h3>Years of Experience</h3>
+                        <p>Over 20 years of expertise in embroidery arts</p>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-palette"></i>
+                        <h3>Personalized Designs</h3>
+                        <p>Custom creations tailored to your unique vision</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Image Viewing -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <img class="modal-image" id="modalImage" src="" alt="Design Image">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Details</h3>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> info@threadcraft.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Embroidery Lane, Tiruchirappalli, Tamil Nadu - 620001</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#designs">Our Designs</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact Us</a>
+                <a href="#privacy">Privacy Policy</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons"><a href="https://www.instagram.com/mk_embro" target="_blank">
+    <i class="fab fa-instagram"></i>
+</a>
+<a href="https://www.facebook.com/" target="_blank">
+    <i class="fab fa-facebook"></i>
+</a>
+<a href="https://wa.me/+918870552074" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<a href="https://www.youtube.com/@mk_embro" target="_blank">
+    <i class="fab fa-youtube"></i>
+</a>
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 ThreadCraft. All rights reserved. Crafted with <i class="fas fa-heart" style="color: #d4af37;"></i> by artisans.</p>
+        </div>
+    </footer>
+
+    <script>
+
+         // Mobile menu toggle functionality
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navCenter = document.getElementById('nav-center');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navCenter.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            mobileMenu.innerHTML = navCenter.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navCenter.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Auto-advance carousel
+        setInterval(nextSlide, 5000); // Increased to 5 seconds
+
+        // Pause on hover
+        const carouselWrapper = document.querySelector('.carousel-wrapper');
+        let slideInterval = setInterval(nextSlide, 5000);
+
+        carouselWrapper.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+
+        carouselWrapper.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+
+        // Search functionality
+        const searchBar = document.querySelector('.search-bar');
+        searchBar.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const designCards = document.querySelectorAll('.design-card');
+            
+            designCards.forEach(card => {
+                const designId = card.querySelector('.design-id').textContent.toLowerCase();
+                if (designId.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = searchTerm === '' ? 'block' : 'none';
+                }
+            });
+        });
+
+        // Save design functionality
+        function saveDesign(designId) {
+            let savedDesigns = window.savedDesigns || [];
+            
+            if (!savedDesigns.includes(designId)) {
+                savedDesigns.push(designId);
+                window.savedDesigns = savedDesigns;
+                
+                const button = event.target.closest('.btn-save');
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Saved!';
+                button.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = 'linear-gradient(135deg, #d4af37, #b8860b)';
+                }, 2000);
+                
+                alert(`Design ${designId} has been saved to your favorites!`);
+            } else {
+                alert(`Design ${designId} is already in your favorites!`);
+            }
+        }
+
+        // Modal functionality
+        function openModal(imageSrc, designId) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = imageSrc;
+            modalImage.alt = `Design ${designId}`;
+            modal.style.display = 'flex';
+            
+            // Zoom functionality
+            let scale = 1;
+            modalImage.onclick = () => {
+                scale = scale === 1 ? 1.5 : 1;
+                modalImage.style.transform = `scale(${scale})`;
+            };
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modal.style.display = 'none';
+            modalImage.style.transform = 'scale(1)';
+        }
+
+        // Close modal when clicking outside the image
+        document.getElementById('imageModal').addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                closeModal();
+            }
+        });
+
+        // show more design
+        function toggleMoreDesigns() {
+    const hiddenCards = document.querySelectorAll('.design-card.hidden');
+    const seeMoreBtn = document.querySelector('.btn-see-more');
+    
+    hiddenCards.forEach(card => {
+        card.classList.toggle('hidden');
+    });
+    
+    if (seeMoreBtn.textContent === 'See More') {
+        seeMoreBtn.textContent = 'See Less';
+    } else {
+        seeMoreBtn.textContent = 'See More';
+        // Scroll back to the top of the designs section
+        document.querySelector('.designs-grid').scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle (if needed)
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('mobile-active');
+        }
+
+        // Language switcher functionality
+        function switchLanguage(lang) {
+            const languageBtn = document.querySelector('.language-btn');
+            const flagIcons = {
+                'English': 'fas fa-globe',
+                'Tamil': 'fas fa-globe',
+                'Malayalam': 'fas fa-globe',
+                'Kannada': 'fas fa-globe',
+                'Hindi': 'fas fa-globe'
+            };
+            
+            languageBtn.innerHTML = `<i class="${flagIcons[lang]}"></i> ${lang} <i class="fas fa-chevron-down"></i>`;
+            
+            setTimeout(() => {
+                alert(`Language switched to ${lang}`);
+            }, 300);
+        }
+
+        // Add click handlers for language dropdown
+        document.querySelectorAll('.dropdown-content a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const language = this.textContent.trim();
+                switchLanguage(language);
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const carousel = document.querySelector('.carousel-wrapper');
+            if (carousel) {
+                carousel.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add animation when elements come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe design cards for animation
+        document.querySelectorAll('.design-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            document.body.style.transition = 'opacity 0.5s ease';
+        });
+
+        // Initialize saved designs array
+        window.savedDesigns = [];
+
+        // Add keyboard navigation for accessibility
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-nav');
+            }
+        });
+
+        document.addEventListener('mousedown', () => {
+            document.body.classList.remove('keyboard-nav');
+        });
+
+        // Add search suggestions
+        const searchSuggestions = ['EMB-001', 'EMB-002', 'EMB-003', 'EMB-004', 'EMB-005', 'EMB-006'];
+        
+        searchBar.addEventListener('focus', () => {
+            console.log('Search suggestions:', searchSuggestions);
+        });
+
+        // Add hover effects for better UX
+        document.querySelectorAll('.design-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.querySelector('.design-image').style.transform = 'scale(1.05)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('.design-image').style.transform = 'scale(1)';
+            });
+        });
+
+        // Add contact form validation (if you add a contact form later)
+        function validateForm(formData) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+            
+            return {
+                email: emailRegex.test(formData.email),
+                phone: phoneRegex.test(formData.phone)
+            };
+        }
+
+        // Add print functionality for designs
+        function printDesign(designId) {
+            const designCard = document.querySelector(`[data-design-id="${designId}"]`);
+            if (designCard) {
+                const printWindow = window.open('', '', 'height=600,width=800');
+                printWindow.document.write(`
+                    <html>
+                        <head>
+                            <title>Print Design ${designId}</title>
+                            <style>
+                                body { font-family: Arial, sans-serif; text-align: center; }
+                                .design-info { margin: 20px; }
+                            </style>
+                        </head>
+                        <body>
+                            <h1>ThreadCraft Design</h1>
+                            <div class="design-info">
+                                <h2>Design ID: ${designId}</h2>
+                                <p>Contact: +91 98765 43210</p>
+                                <p>Email: info@threadcraft.com</p>
+                            </div>
+                        </body>
+                    </html>
+                `);
+                printWindow.document.close();
+                printWindow.print();
+            }
+        }
+
+        // Add social sharing functionality
+        function shareDesign(designId) {
+            const shareData = {
+                title: `ThreadCraft Design ${designId}`,
+                text: `Check out this beautiful embroidery design from ThreadCraft!`,
+                url: window.location.href
+            };
+            
+            if (navigator.share) {
+                navigator.share(shareData);
+            } else {
+                const shareUrl = `https://wa.me/?text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
+                window.open(shareUrl, '_blank');
+            }
+        }
+
+        // Add image lazy loading simulation
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.style.opacity = '1';
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        document.querySelectorAll('.design-image').forEach(img => {
+            img.style.opacity = '0.7';
+            img.style.transition = 'opacity 0.3s ease';
+            imageObserver.observe(img);
+        });
+
+        console.log('ThreadCraft Embroidery Catalog loaded successfully!');
+    </script>
+</body>
+</html>
