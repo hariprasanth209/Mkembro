@@ -8,6 +8,22 @@
     <link rel="icon" href="images/icons/Logo.png" type="image/png">
     <link rel="apple-touch-icon" href="images/icons/Logo.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Enhanced Open Graph Meta Tags -->
+    <meta property="og:title" content="MK Embroidery - Custom Designs & Stitching" />
+    <meta property="og:description" content="Explore 2000+ embroidery designs or order custom embroidery. MK Embroidery - Veerapandi, Salem." />
+    <meta property="og:url" content="https://mkembro.netlify.app" />
+    <meta property="og:image" content="https://mkembro.netlify.app/images/icons/Logo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="MK Embroidery" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MK Embroidery - Custom Designs & Stitching" />
+    <meta name="twitter:description" content="Explore 2000+ embroidery designs or order custom embroidery. MK Embroidery - Veerapandi, Salem." />
+    <meta name="twitter:image" content="https://mkembro.netlify.app/images/icons/Logo.png" />
+    
+
     <style>
         * {
             margin: 0;
@@ -21,6 +37,249 @@
             color: #333;
             background: linear-gradient(135deg, #faf8f3 0%, #f5f0e8 100%);
         }
+
+
+        /* link generate */
+        
+        .link-preview-container {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .link-preview-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .preview-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="embroidery" patternUnits="userSpaceOnUse" width="10" height="10"><circle cx="5" cy="5" r="1" fill="white" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23embroidery)"/></svg>');
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .preview-image::after {
+            content: '🧵';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .preview-content {
+            padding: 25px;
+            position: relative;
+        }
+
+        .preview-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .preview-description {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .preview-url {
+            color: #3498db;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .preview-url::before {
+            content: '🔗';
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-30px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(30px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: sparkleFloat 3s linear infinite;
+        }
+
+        .sparkle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { left: 20%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { left: 30%; animation-delay: 1s; }
+        .sparkle:nth-child(4) { left: 40%; animation-delay: 1.5s; }
+        .sparkle:nth-child(5) { left: 50%; animation-delay: 2s; }
+        .sparkle:nth-child(6) { left: 60%; animation-delay: 2.5s; }
+        .sparkle:nth-child(7) { left: 70%; animation-delay: 3s; }
+        .sparkle:nth-child(8) { left: 80%; animation-delay: 3.5s; }
+        .sparkle:nth-child(9) { left: 90%; animation-delay: 4s; }
+
+        @keyframes sparkleFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .shine-effect {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shine 3s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .location-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            animation: bounceIn 1.2s ease-out;
+        }
+
+        .location-badge::before {
+            content: '📍';
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .design-counter {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #2c3e50;
+            font-weight: bold;
+            animation: countUp 2s ease-out;
+        }
+
+        @keyframes countUp {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 600px) {
+            .link-preview-container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .preview-title {
+                font-size: 1.2rem;
+            }
+            
+            .preview-content {
+                padding: 20px;
+            }
+        }
+/* end od link */
 
         /* Navigation */
         .navbar {
