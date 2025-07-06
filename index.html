@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ThreadCraft - Elegant Embroidery Designs</title>
-<link rel="icon" href="images/icons/Logo.png" type="image/png">
     <link rel="apple-touch-icon" href="images/icons/Logo.png">
+<link rel="icon" href="images/icons/Logo.png" type="image/png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -1702,7 +1702,7 @@
     <!-- Footer -->
     <footer class="footer" id="contact">
         <div class="footer-content">
-           <div class="footer-section">
+            <div class="footer-section">
                 <h3>Contact Details</h3>
                 <p><a href="tel:+918870552074"><i class="fas fa-phone"></i> +91 8870552074</a></p>
                 <p><a href="mailto:mkembrofashion@gmail.com"><i class="fas fa-envelope"></i> mkembrofashion@gmail.com</a></p>
@@ -1774,35 +1774,37 @@ window.addEventListener("load", function () {
             });
         });
 
-        // Carousel functionality
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const totalSlides = slides.length;
+document.addEventListener('DOMContentLoaded', () => {
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
 
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[index].classList.add('active');
-        }
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+    }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        }
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+    }
 
-        // Auto-advance carousel
-        setInterval(nextSlide, 5000); // Increased to 5 seconds
+    // Show the first slide initially
+    showSlide(currentSlide);
 
-        // Pause on hover
-        const carouselWrapper = document.querySelector('.carousel-wrapper');
-        let slideInterval = setInterval(nextSlide, 5000);
+    // Auto-advance carousel every 5 seconds
+    let slideInterval = setInterval(nextSlide, 5000);
 
-        carouselWrapper.addEventListener('mouseenter', () => {
-            clearInterval(slideInterval);
-        });
+    // Pause on hover
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    carouselWrapper.addEventListener('mouseenter', () => {
+        clearInterval(slideInterval);
+    });
 
-        carouselWrapper.addEventListener('mouseleave', () => {
-            slideInterval = setInterval(nextSlide, 5000);
-        });
+    carouselWrapper.addEventListener('mouseleave', () => {
+        slideInterval = setInterval(nextSlide, 5000);
+    });
+});
 
         // Search functionality
         const searchBar = document.querySelector('.search-bar');
