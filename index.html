@@ -803,6 +803,31 @@
                 display: none; /* Hide shapes on mobile */
             }
         }
+        #loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white; /* or use black/dark theme */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#main-content {
+  display: none;
+}
+#main-content {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#main-content.show {
+  opacity: 1;
+}
+
     </style>
 </head>
 <body>
@@ -845,8 +870,13 @@
         </div>
     </nav>
 
+    <!-- Loading Spinner -->
+<div id="loader">
+  <img src="images/icons/spin.gif" alt="Loading..." />
+</div>
+
     <!-- Main Content -->
-    <main class="main-content">
+    <main class="main-content" id="main-content" style="display: none;">
         <!-- Carousel Section -->
         <section class="carousel-section">
         <div class="carousel-container">
@@ -1712,6 +1742,14 @@
     </footer>
 
     <script>
+
+window.addEventListener("load", function () {
+  document.getElementById("loader").style.display = "none";
+  const content = document.getElementById("main-content");
+  content.style.display = "block";
+  setTimeout(() => content.classList.add("show"), 50); // Trigger fade-in
+});
+
 
          // Mobile menu toggle functionality
         const mobileMenu = document.getElementById('mobile-menu');
