@@ -2010,8 +2010,18 @@
         </div>
     </footer>
 
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-03Q8BJMR6F"></script>
     <script>
+// google analytics dashboard
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-03Q8BJMR6F');
+
+// loading animation
 window.addEventListener("load", function () {
   document.getElementById("loader").style.display = "none";
   const content = document.getElementById("main-content");
