@@ -4,9 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ThreadCraft - Elegant Embroidery Designs</title>
+    <link rel="shortcut icon" href="images/icons/Logo.png" sizes="32x32">
+    <link rel="icon" href="images/icons/Logo.png" type="image/png">
     <link rel="apple-touch-icon" href="images/icons/Logo.png">
-<link rel="icon" href="images/icons/Logo.png" type="image/png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Title shown in the preview -->
+  <meta property="og:title" content="MK Embroidery - Custom Designs & Stitching" />
+
+  <!-- Short description -->
+  <meta property="og:description" content="Explore 2000+ embroidery designs or order custom embroidery. MK Embroidery - Veerapandi, Salem." />
+
+  <!-- Your website URL -->
+  <meta property="og:url" content="https://mkembro.netlify.app" />
+
+  <!-- Image to show in preview -->
+  <meta property="og:image" content="https://mkembro.netlify.app/images/icons/Logo.png" />
+
+  <!-- Type -->
+  <meta property="og:type" content="website" />
+
+  <!-- Optional: your site name -->
+  <meta property="og:site_name" content="MK Embroidery" />
+
+
     <style>
         * {
             margin: 0;
@@ -743,10 +764,19 @@
             }
 
             .main-content {
-                margin-top: 180px;
+                margin-top: 100px;
             }
 
+            .carousel-section{
+                height:440px;
+                background-attachment: unset;
 
+            }
+
+            .carousel-container{
+                height: 350px;
+                padding: 3px;
+            }
             .slide-content h2 {
                 font-size: 2rem;
             }
@@ -770,7 +800,7 @@
 
             /* carosoul */
             .carousel-wrapper {
-                height: 500px; /* Taller for mobile */
+                height: 340px;
             }
             
             .slide-content {
@@ -803,6 +833,31 @@
                 display: none; /* Hide shapes on mobile */
             }
         }
+        #loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white; /* or use black/dark theme */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#main-content {
+  display: none;
+}
+#main-content {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#main-content.show {
+  opacity: 1;
+}
+
     </style>
 </head>
 <body>
@@ -845,8 +900,13 @@
         </div>
     </nav>
 
+    <!-- Loading Spinner -->
+<div id="loader">
+  <img src="images/icons/spin.gif" alt="Loading..." />
+</div>
+
     <!-- Main Content -->
-    <main class="main-content">
+    <main class="main-content" id="main-content" style="display: none;">
         <!-- Carousel Section -->
         <section class="carousel-section">
         <div class="carousel-container">
@@ -1084,7 +1144,7 @@
 
                 <div class="design-card" data-design-id="EMB-015">
                     <div class="design-image" onclick="openModal('images/designs/EMB-15.jpg', 'EMB-015')">
-                        <img src="images/designs/EMB-15.png" alt="Design EMB-015">
+                        <img src="images/designs/EMB-15.jpg" alt="Design EMB-015">
                     </div>
                     <div class="design-info">
                         <div class="design-id">EMB-015</div>
@@ -1674,9 +1734,9 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Contact Details</h3>
-                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
-                <p><i class="fas fa-envelope"></i> info@threadcraft.com</p>
-                <p><i class="fas fa-map-marker-alt"></i> 123 Embroidery Lane, Tiruchirappalli, Tamil Nadu - 620001</p>
+                <p><a href="tel:+918870552074"><i class="fas fa-phone"></i> +91 8870552074</a></p>
+                <p><a href="mailto:mkembrofashion@gmail.com"><i class="fas fa-envelope"></i> mkembrofashion@gmail.com</a></p>
+                <p><a href="https://www.google.com/maps/search/?api=1&query=H3GF%2B32W,+Salem,+Tamil+Nadu+636308" target="_blank"><i class="fas fa-map-marker-alt"></i> rajastreet, veerapandi, salem, 636308</a></p>
             </div>
             
             <div class="footer-section">
@@ -1713,6 +1773,14 @@
 
     <script>
 
+window.addEventListener("load", function () {
+  document.getElementById("loader").style.display = "none";
+  const content = document.getElementById("main-content");
+  content.style.display = "block";
+  setTimeout(() => content.classList.add("show"), 50); // Trigger fade-in
+});
+
+
          // Mobile menu toggle functionality
         const mobileMenu = document.getElementById('mobile-menu');
         const navCenter = document.getElementById('nav-center');
@@ -1736,35 +1804,37 @@
             });
         });
 
-        // Carousel functionality
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const totalSlides = slides.length;
+document.addEventListener('DOMContentLoaded', () => {
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
 
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[index].classList.add('active');
-        }
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+    }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            showSlide(currentSlide);
-        }
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+    }
 
-        // Auto-advance carousel
-        setInterval(nextSlide, 5000); // Increased to 5 seconds
+    // Show the first slide initially
+    showSlide(currentSlide);
 
-        // Pause on hover
-        const carouselWrapper = document.querySelector('.carousel-wrapper');
-        let slideInterval = setInterval(nextSlide, 5000);
+    // Auto-advance carousel every 5 seconds
+    let slideInterval = setInterval(nextSlide, 5000);
 
-        carouselWrapper.addEventListener('mouseenter', () => {
-            clearInterval(slideInterval);
-        });
+    // Pause on hover
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    carouselWrapper.addEventListener('mouseenter', () => {
+        clearInterval(slideInterval);
+    });
 
-        carouselWrapper.addEventListener('mouseleave', () => {
-            slideInterval = setInterval(nextSlide, 5000);
-        });
+    carouselWrapper.addEventListener('mouseleave', () => {
+        slideInterval = setInterval(nextSlide, 5000);
+    });
+});
 
         // Search functionality
         const searchBar = document.querySelector('.search-bar');
